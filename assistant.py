@@ -5,7 +5,7 @@ import threading
 import datetime
 import webbrowser
 
-# ----------------- SPEECH ENGINE -----------------
+
 engine = pyttsx3.init()
 engine.setProperty('rate', 160)
 
@@ -13,10 +13,8 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-# ----------------- GLOBAL FLAG -----------------
 running = False
 
-# ----------------- COMMAND PROCESSOR -----------------
 def process_command(command):
     command = command.lower()
     print("User said:", command)
@@ -50,7 +48,7 @@ def process_command(command):
     else:
         speak("Sorry, I did not understand that command")
 
-# ----------------- LISTEN FUNCTION -----------------
+
 def listen():
     global running
     recognizer = sr.Recognizer()
@@ -72,7 +70,7 @@ def listen():
         except Exception as e:
             print("Error:", e)
 
-# ----------------- START ASSISTANT -----------------
+
 def start_assistant():
     global running
     if not running:
@@ -80,13 +78,13 @@ def start_assistant():
         speak("Assistant started")
         threading.Thread(target=listen, daemon=True).start()
 
-# ----------------- STOP ASSISTANT -----------------
+
 def stop_assistant():
     global running
     running = False
     speak("Assistant stopped")
 
-# ----------------- GUI DESIGN -----------------
+
 window = tk.Tk()
 window.title("AI Voice Assistant - Major Project")
 window.geometry("400x300")
